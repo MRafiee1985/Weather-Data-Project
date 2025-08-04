@@ -1,0 +1,6 @@
+*.pyc
+.env
+logs/
+target/
+dbt/profiles.yml
+postgres/data/
