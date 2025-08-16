@@ -1,6 +1,9 @@
-*.pyc
-.env
-logs/
-target/
-dbt/profiles.yml
-postgres/data/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.build/
+dist/
+.eggs/
+*.egg-info/

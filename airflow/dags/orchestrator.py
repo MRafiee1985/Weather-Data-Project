@@ -9,7 +9,7 @@ import sys
 sys.path.append('/opt/airflow')
 
 # Import your ETL functions from insert_records
-from api_request.get_api import connect_to_db, fetch_data
+from api_request.api_request import connect_to_db, fetch_data
 from api_request.insert_records import  main   
 
 
@@ -19,7 +19,7 @@ def run_insert_records():
 
 default_args = {
     'description': 'A DAG to orchestrate data',
-    'start_date': datetime(2025, 7, 31),
+    'description': 'A DAG to orchestrate data',
     'catchup': False
 }
 
