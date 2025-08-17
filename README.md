@@ -169,38 +169,11 @@ SELECT * FROM daily_average LIMIT 10;
 - Limit database user permissions to least‑privilege for services.
 - Avoid committing any `.env` or credentials to git.
 
----
-
-## 📈 Roadmap / Nice‑to‑Haves
-
-- Add structured **logging & metrics** (task‑level + app logs).
-- Implement **tests** (dbt tests, data freshness, Great Expectations).
-- Switch to **incremental models** for staging/marts.
-- Add **CI/CD** (linters, `dbt build`, basic pipeline tests on PR).
-- Embed a ready‑made **Superset dashboard JSON** for quick import.
-
----
-
-## 🙌 Acknowledgements
-
-- Weather data via **Weatherstack**.
-- BI and orchestration by the amazing open‑source projects **Apache Superset** and **Apache Airflow**.
-- dbt Core for a clean, testable SQL‑first transformation layer.
 
 ---
 
 ## 📜 License
+Licensed under the MIT License — © 2025 Marjan Rafiee.
 
-### Source notes used to shape the README
-- Weatherstack free-plan limits and API response fields; Windows + WSL setup and Docker use; key tech list. :contentReference[oaicite:0]{index=0} :contentReference[oaicite:1]{index=1} :contentReference[oaicite:2]{index=2} :contentReference[oaicite:3]{index=3}
-- PostgreSQL container image and example port mapping (local→container), env vars for DB auth/persistence. :contentReference[oaicite:4]{index=4}
-- psql usage tips; creating schemas; typical raw/staging column list. :contentReference[oaicite:5]{index=5} :contentReference[oaicite:6]{index=6}
-- Python virtualenv steps and psycopg2 usage; connection parameters and error-handling. :contentReference[oaicite:7]{index=7} :contentReference[oaicite:8]{index=8}
-- Airflow image & mapping, separate metadata DB, DAG basics and scheduling. :contentReference[oaicite:9]{index=9}
-- Docker network/aliases and inter-container comms. :contentReference[oaicite:10]{index=10}
-- dbt config (host `db`, port 5432, schema `dev`) and file paths for `sources.yml` and `stg_weather_data.sql`. :contentReference[oaicite:11]{index=11} :contentReference[oaicite:12]{index=12} :contentReference[oaicite:13]{index=13}
-- Transform details: timezone conversion, de-dup via window function; marts for daily averages and a simple report. :contentReference[oaicite:14]{index=14} :contentReference[oaicite:15]{index=15}
-- Airflow→dbt via Docker operator, common challenges (Docker socket permissions, networking). :contentReference[oaicite:16]{index=16} :contentReference[oaicite:17]{index=17}
-- Superset setup idea and 5-minute dashboard refresh. :contentReference[oaicite:18]{index=18}
 
 
