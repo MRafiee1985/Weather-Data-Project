@@ -1,4 +1,4 @@
-# Real‑Time Weather Dashboard (Python · Airflow · Docker)
+# Real‑Time Weather Dashboard (Python, Airflow, Docker)
 
 Build a **real‑time weather data pipeline** that ingests from an external API, lands raw data in PostgreSQL, transforms it with **dbt**, orchestrates everything with **Apache Airflow**, and visualizes insights in **Apache Superset**. This repository is designed as a practical, portfolio‑ready project showcasing end‑to‑end data engineering on your local machine via Docker.
 
@@ -20,7 +20,7 @@ Build a **real‑time weather data pipeline** that ingests from an external API,
 
 ---
 
-## 🗺️ Architecture (high‑level)
+## 🗺️ Architecture 
 
 ```
 Weatherstack API  -->  Airflow (Ingest Task) ---> PostgreSQL (raw/dev)
@@ -43,38 +43,6 @@ Weatherstack API  -->  Airflow (Ingest Task) ---> PostgreSQL (raw/dev)
 - **dbt (Core)** for SQL‑first transformations
 - **Apache Superset** for BI dashboards
 
----
-
-## 📁 Repository Structure (suggested)
-
-```
-.
-├─ docker-compose.yml
-├─ .env.example
-├─ airflow/
-│  └─ dags/
-│     └─ weather_pipeline.py             # Orchestrates ingestion + dbt
-├─ dbt/
-│  ├─ dbt_project.yml
-│  └─ models/
-│     ├─ sources/
-│     │  └─ sources.yml                  # Declares raw table/columns
-│     ├─ staging/
-│     │  └─ stg_weather_data.sql         # Timezone, renames, de-dup
-│     └─ marts/
-│        ├─ weather_report.sql
-│        └─ daily_average.sql
-├─ app/
-│  ├─ weather_api.py                     # API client
-│  └─ db.py                              # Database helpers (connect/insert)
-└─ superset/
-   ├─ dockerinit.sh
-   ├─ dockerbootstrap
-   ├─ superset_config.py
-   └─ .env
-```
-
-> File and folder names are illustrative—keep your actual paths consistent with your code and `docker-compose.yml`.
 
 ---
 
@@ -192,8 +160,6 @@ SELECT * FROM daily_average LIMIT 10;
 - Default: frequent runs for development (e.g., every 1 minute) so you can validate end‑to‑end.
 - For production‑like usage, consider **every 5 minutes** or higher to respect API limits.
 
-> Remember most free weather APIs have rate limits—design for caching/minimal calls.
-
 ---
 
 ## 🔐 Security & Config Best Practices
@@ -202,24 +168,6 @@ SELECT * FROM daily_average LIMIT 10;
 - Regularly **update dependencies** and Docker images.
 - Limit database user permissions to least‑privilege for services.
 - Avoid committing any `.env` or credentials to git.
-
----
-
-## 🛠️ Troubleshooting
-
-- **Permission errors** (e.g., creating files inside containers): ensure correct `chown`/`chmod` on mounted volumes.
-- **Import/module issues**: check container PYTHONPATH and installed packages.
-- **Network problems**: verify the Docker network name, **service aliases**, and that services depend on each other correctly.
-- **DB connection failures**: confirm ports, user/password, and that the DB service is healthy.
-- **dbt in DockerOperator**: mount project and profiles, pass correct environment, and ensure the operator can reach the DB host (use service name, e.g., `db`).
-
-Commands you may find handy:
-
-```bash
-docker compose logs -f <service>
-docker compose exec <service> bash
-docker compose down -v   # ❗ removes volumes; only for resetting local state
-```
 
 ---
 
